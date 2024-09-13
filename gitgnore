@@ -1,0 +1,10 @@
+# Ignore directories
+output/
+
+# Ignore Python bytecode
+*.pyc
+__pycache__/
+
+# Ignore virtual environment
+venv/
+env/
