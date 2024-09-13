@@ -1,0 +1,40 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+# Dados fornecidos
+data = {
+    'Week': ['4/21/2019', '4/28/2019', '5/5/2019', '5/12/2019', '5/19/2019', '5/26/2019',
+             '6/2/2019', '6/9/2019', '6/16/2019', '6/23/2019', '6/30/2019', '7/7/2019',
+             '7/14/2019', '7/21/2019', '7/28/2019', '8/4/2019', '8/11/2019', '8/18/2019',
+             '8/25/2019'],
+    'Python': [55, 52, 56, 56, 57, 55, 54, 58, 58, 60, 57, 60, 60, 56, 59, 57, 54, 61, 59],
+    'Java': [55, 50, 56, 61, 56, 57, 58, 55, 56, 57, 54, 58, 57, 55, 53, 54, 51, 58, 60],
+    'C++': [18, 16, 17, 18, 17, 17, 15, 16, 16, 16, 16, 17, 17, 15, 16, 16, 19, 19, 19]
+}
+
+# Criar o DataFrame
+df = pd.DataFrame(data)
+df['Week'] = pd.to_datetime(df['Week'])
+
+# Criar o diretório output se não existir
+if not os.path.exists('output'):
+    os.makedirs('output')
+
+# Criar o gráfico
+plt.figure(figsize=(14, 8))
+plt.plot(df['Week'], df['Python'], marker='o', label='Python', color='b')
+plt.plot(df['Week'], df['Java'], marker='o', label='Java', color='g')
+plt.plot(df['Week'], df['C++'], marker='o', label='C++', color='r')
+
+plt.title('Número de Programadores por Linguagem de Programação ao Longo das Semanas')
+plt.xlabel('Semana')
+plt.ylabel('Número de Programadores')
+plt.legend()
+plt.grid(True)
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Salvar o gráfico
+plt.savefig('output/programming_languages_trend.png')
+plt.show()
